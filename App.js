@@ -4,12 +4,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import All from './screens/All';
 import Business from './screens/Business';
-import HealthScreen from './screens/Health';
-import SportsScreen from './screens/Sports';
-import TechScreen from './screens/Tech';
+import Health from './screens/Health';
+import Sports from './screens/Sports';
+import Tech from './screens/Tech';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <Tab.Navigator>
@@ -26,21 +27,21 @@ export default function App() {
             ),
           }} />
 
-        <Tab.Screen name="Health" component={HealthScreen}
+        <Tab.Screen name="Health" component={Health}
           options={{
             tabBarIcon: (props) => (
               <Icon type='feather' name='heart' color={props.color} />
             ),
           }} />
 
-        <Tab.Screen name="Sports" component={SportsScreen}
+        <Tab.Screen name="Sports" component={Sports}
           options={{
             tabBarIcon: (props) => (
               <Icon type='ionicon' name="tennisball-outline" color={props.color} />
             ),
           }} />
 
-        <Tab.Screen name="Tech" component={TechScreen}
+        <Tab.Screen name="Tech" component={Tech}
           options={{
             tabBarIcon: (props) => (
               <Icon type='ionicon' name="hardware-chip-outline" color={props.color} />
