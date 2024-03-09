@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react'
 
-import { services } from '../services';
-
+import React from 'react'
 import { NativeBaseProvider, ScrollView } from 'native-base';
 
 import NewsList from '../components/newsList';
+import fetchNews from '../hooks/fetchNews';
+import Layout from '../components/layout';
 
 export default function Health() {
-    const [newsData, setNewsData] = useState([])
-    useEffect(() => {
-        services('health')
-            .then(data => {
-                setNewsData(data)
-            })
-            .catch(error => {
-                alert(error)
-            })
-    }, [])
+    const newsData = fetchNews("health");
     return (
-        <NativeBaseProvider>
-            <ScrollView height={850}>
+        <Layout>
 
-                <NewsList news={newsData} />
+            <NewsList news={newsData} />
 
-            </ScrollView>
-        </NativeBaseProvider>
+        </Layout>
     )
 }

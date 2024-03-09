@@ -1,29 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native';
-import { services } from '../services';
-import moment from 'moment';
-import { NativeBaseProvider, FlatList, ScrollView, Divider, Image, Spinner } from 'native-base';
-import News from '../components/news';
+import React from 'react'
 import NewsList from '../components/newsList';
+import fetchNews from '../hooks/fetchNews';
+import Layout from '../components/layout';
 
 export default function All() {
-    const [newsData, setNewsData] = useState([])
-    useEffect(() => {
-        services('general')
-            .then(data => {
-                setNewsData(data)
-            })
-            .catch(error => {
-                alert(error)
-            })
-    }, [])
+    const newsData = fetchNews("general");
     return (
-        <NativeBaseProvider>
-            <ScrollView height={850}>
+        <Layout>
+            <NewsList news={newsData} />
+        </Layout>
 
-                <NewsList news={newsData} />
-
-            </ScrollView>
-        </NativeBaseProvider>
     )
 }
